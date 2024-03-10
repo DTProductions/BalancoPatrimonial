@@ -28,6 +28,6 @@ public class RegistroPatrimonial {
 
     @Override
     public String toString() {
-        return nome + " " + valor;
+        return nome + " | " + valor;
     }
 }

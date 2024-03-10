@@ -90,12 +90,11 @@ public class BalancoPatrimonial {
                 if(linha.isBlank()){
                     break;
                 }
-                
-                String[] partesRegistro = linha.split(" ");
-                
-                String categoria = partesRegistro[0];
-                String nome = partesRegistro[1];
-                double valor = Double.parseDouble(partesRegistro[2]);
+
+                String[] partesRegistro = linha.split("\\|");
+                String categoria = partesRegistro[0].trim();
+                String nome = partesRegistro[1].trim();
+                double valor = Double.parseDouble(partesRegistro[2].trim());
                 
                 categorias.get(categoria).add(new RegistroPatrimonial(nome, valor));
             }
@@ -109,7 +108,7 @@ public class BalancoPatrimonial {
         try(FileWriter arquivoSaida = new FileWriter(new File(local))){
             for(String categoria : categorias.keySet()){
                 for(RegistroPatrimonial registro : categorias.get(categoria)){
-                    arquivoSaida.write(categoria + " " + registro + "\n");
+                    arquivoSaida.write(categoria + " | " + registro + "\n");
                 }
             }
             
