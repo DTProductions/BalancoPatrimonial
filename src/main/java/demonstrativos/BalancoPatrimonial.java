@@ -1,3 +1,5 @@
+package demonstrativos;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.nio.file.Paths;
@@ -81,7 +83,7 @@ public class BalancoPatrimonial {
         }
     }
 
-    public void lerArquivo(String local){
+    public boolean lerArquivo(String local){
         try(Scanner arquivo = new Scanner(Paths.get(local))){
             while(arquivo.hasNextLine()){
                 String linha = arquivo.nextLine();
@@ -97,12 +99,13 @@ public class BalancoPatrimonial {
                 
                 categorias.get(categoria).add(new RegistroPatrimonial(nome, valor));
             }
+            return true;
         } catch (Exception e){
-            System.out.println("Ocorreu um erro ao ler o arquivo");
+            return false;
         }
     }
 
-    public void gerarArquivo(String local){
+    public boolean gerarArquivo(String local){
         try(FileWriter arquivoSaida = new FileWriter(new File(local))){
             for(String categoria : categorias.keySet()){
                 for(RegistroPatrimonial registro : categorias.get(categoria)){
@@ -112,9 +115,9 @@ public class BalancoPatrimonial {
             
             arquivoSaida.write("\nTOTAL ATIVO = " + totalAtivo());
             arquivoSaida.write("\nTOTAL PASSIVO + PATRIMONIO LIQUIDO = " + totalPassivo().add(somaRegistros("PL")));
-            
+            return true;
         } catch (Exception e){
-            System.out.println("Ocorreu um erro ao ler o arquivo");
+            return false;
         }
     }
     
