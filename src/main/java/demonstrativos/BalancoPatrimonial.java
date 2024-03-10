@@ -5,15 +5,15 @@ import java.util.Scanner;
 import java.nio.file.Paths;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.HashMap;
 import java.math.BigDecimal;
+import java.util.LinkedHashMap;
 
 public class BalancoPatrimonial {
 
-    private HashMap<String, ArrayList<RegistroPatrimonial>> categorias;
+    private LinkedHashMap<String, ArrayList<RegistroPatrimonial>> categorias;
 
     public BalancoPatrimonial(){
-        categorias = new HashMap<>();
+        categorias = new LinkedHashMap<>();
         categorias.put("AC", new ArrayList<>());
         categorias.put("ANC", new ArrayList<>());
         categorias.put("PC", new ArrayList<>());
